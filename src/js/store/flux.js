@@ -1,20 +1,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			demo: [],
+			data: ["hello", "world"]
 		},
 		actions: {
+			addTodo: todo => {
+				let list = getStore().data;
+				setStore({ data: [...list, todo] });
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
