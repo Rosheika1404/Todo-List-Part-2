@@ -37,7 +37,7 @@ export function Home() {
 					<div key={index}>
 						{element}
 						<button
-							onClick={() => setList(list.filter(remove => remove !== element))}
+							onClick={() => setList(data.filter(remove => remove !== element))}
 							className="btn btn-warning">
 							<span aria-hidden="true">&times;</span>
 						</button>
