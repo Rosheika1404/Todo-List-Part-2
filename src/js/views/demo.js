@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
@@ -7,33 +7,46 @@ import "../../styles/demo.scss";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
+	let data = store.data;
+	const [list, setList] = useState([]);
+	const [todo, setTodo] = useState("");
 
 	return (
 		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
+			<div className="text-center mt-5 notepad">
+				<div className="list">
+					<h1>To-Do List</h1>
+					<input
+						className="input text-center"
+						value={todo}
+						placeholder="What do you need to do? "
+						onChange={e => setTodo(e.target.value)}
+					/>
+
+					<button
+						onClick={() => {
+							// setList([...list, todo]);
+							if (todo === "") {
+								alert("Add Task");
+							} else {
+								actions.addTodo(todo);
+								setTodo("");
+							}
+						}}
+						className="btn btn-success m-2 add">
+						Add{" "}
+					</button>
+
+					{data.map((element, index) => (
+						<div key={index}>
+							{element}
+							<button onClick={() => actions.deleteTodo(element)} className=" delete btn btn-warning">
+								<span aria-hidden="true">&times;</span>
 							</button>
-						</li>
-					);
-				})}
-			</ul>
+						</div>
+					))}
+				</div>
+			</div>
 			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>

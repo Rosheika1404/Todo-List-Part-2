@@ -1,0 +1,60 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+/* 
+
+    You can write your own styles here...
+    
+    
+    ...Or you can use the import command to include 
+    other sylesheets into your bunde as well, e.j:
+    
+    import 'relative/path/to/stylesheet.scss';
+
+*/
+body {
+    background: radial-gradient(#ccc, #fff);
+    font: 14px sans-serif;
+    padding: 20px;
+  }
+  .notepad {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin: 26px auto 0;
+    height: auto;
+    min-height:350px;
+    padding: 24px;
+    position: relative;
+    width: 50%;
+  }
+  .notepad:before, .notepad:after {
+    content: "";
+    height: 98%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  .notepad:before {
+    background: #fafafa;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    left: -5px;
+    top: 4px;
+    transform: rotate(-2.5deg);
+  }
+  .notepad:after {
+    background: #f6f6f6;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    right: -3px;
+    top: 1px;
+    transform: rotate(1.4deg);
+  }
+  input{
+    border: none; 
+    border-width: 0; 
+    box-shadow: none;
+    font-size:20px;
+    width: 60%;
+    
+  }
+  input:focus, textarea:focus, select:focus{
+    outline: none;
+}
