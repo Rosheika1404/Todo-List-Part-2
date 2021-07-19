@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export function Home() {
 	return (
-		<div classNameName="text-center mt-5 notepad">
+		<div className="text-center mt-5 notepad">
 			<div className="jumbotron justify-content-center text-center">
 				<h1 className="display-4 ">Welcome to the Task List</h1>
 

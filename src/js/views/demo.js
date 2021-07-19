@@ -7,7 +7,7 @@ import "../../styles/demo.scss";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
-	let data = store.data;
+	const data = store.data;
 	const [list, setList] = useState([]);
 	const [todo, setTodo] = useState("");
 
@@ -29,7 +29,7 @@ export const Demo = () => {
 							if (todo === "") {
 								alert("Add Task");
 							} else {
-								actions.addTodo(todo);
+								actions.addTodo({ label: todo, done: false });
 								setTodo("");
 							}
 						}}
@@ -39,7 +39,7 @@ export const Demo = () => {
 
 					{data.map((element, index) => (
 						<div key={index}>
-							{element}
+							{element.label}
 							<button onClick={() => actions.deleteTodo(element)} className=" delete btn btn-warning">
 								<span aria-hidden="true">&times;</span>
 							</button>
