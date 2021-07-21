@@ -23,10 +23,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// let list = getStore().data;
 				// setStore({ data: [...list, todo] });
 			},
+			updateTodo: () => {},
 			deleteTodo: element => {
-				let deleteItem = getStore().data;
-				deleteItem = deleteItem.filter(remove => remove !== element);
-				setStore({ data: deleteItem });
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/rosheika1", {
+					method: "PUT",
+					body: JSON.stringify(todo),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => res.json())
+					.then(response => setStore({ data: response }));
+				// let deleteItem = getStore().data;
+				// deleteItem = deleteItem.filter(remove => remove !== element);
+				// setStore({ data: deleteItem });
 			}
 		}
 	};

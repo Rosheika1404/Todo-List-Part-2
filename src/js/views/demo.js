@@ -8,8 +8,7 @@ import "../../styles/demo.scss";
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
 	const data = store.data;
-	const [list, setList] = useState([]);
-	const [todo, setTodo] = useState("");
+	useState("");
 
 	return (
 		<div className="container">
@@ -37,14 +36,18 @@ export const Demo = () => {
 						Add{" "}
 					</button>
 
-					{data.map((element, index) => (
-						<div key={index}>
-							{element.label}
-							<button onClick={() => actions.deleteTodo(element)} className=" delete btn btn-warning">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-					))}
+					{data &&
+						data.map((element, index) => (
+							<div key={index}>
+								{element.label}
+
+								<button
+									onClick={() => actions.deleteTodo(data.filter(remove => remove !== element))}
+									className=" delete btn btn-warning">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						))}
 				</div>
 			</div>
 			<br />
