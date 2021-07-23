@@ -6,9 +6,9 @@ import { Context } from "../store/appContext";
 import "../../styles/demo.scss";
 
 export const Demo = () => {
+	const [todo, setTodo] = useState("");
 	const { store, actions } = useContext(Context);
 	const data = store.data;
-	useState("");
 
 	return (
 		<div className="container">
@@ -18,7 +18,7 @@ export const Demo = () => {
 					<input
 						className="input text-center"
 						value={todo}
-						placeholder="What do you need to do? "
+						placeholder="What do you need to do?"
 						onChange={e => setTodo(e.target.value)}
 					/>
 
@@ -33,21 +33,28 @@ export const Demo = () => {
 							}
 						}}
 						className="btn btn-success m-2 add">
-						Add{" "}
+						Add
 					</button>
 
-					{data &&
-						data.map((element, index) => (
-							<div key={index}>
-								{element.label}
+					{data.map((element, index) => (
+						<div key={index}>
+							<ul className="">
+								<li className="">
+									{element.label}
 
-								<button
-									onClick={() => actions.deleteTodo(data.filter(remove => remove !== element))}
-									className=" delete btn btn-warning">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						))}
+									{/* <button className="btn btn-outline-secondary" onClick={()=>}>
+										<i className="fas fa-edit" />
+									</button> */}
+
+									<button
+										onClick={() => actions.deleteTodo(data.filter(remove => remove !== element))}
+										className="delete btn btn-warning">
+										<i className="fas fa-trash" />
+									</button>
+								</li>
+							</ul>
+						</div>
+					))}
 				</div>
 			</div>
 			<br />

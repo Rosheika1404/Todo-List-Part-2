@@ -23,21 +23,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// let list = getStore().data;
 				// setStore({ data: [...list, todo] });
 			},
-			updateTodo: () => {},
-			deleteTodo: element => {
+			updateTodo: (label, index) => {
+				let update = getStore().data;
+				update[index]={label: label, done: false }
+				update=[...update,update[index]]
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/rosheika1", {
 					method: "PUT",
-					body: JSON.stringify(todo),
+					body: JSON.stringify(update),
 					headers: {
 						"Content-Type": "application/json"
 					}
-				})
-					.then(res => res.json())
-					.then(response => setStore({ data: response }));
-				// let deleteItem = getStore().data;
-				// deleteItem = deleteItem.filter(remove => remove !== element);
-				// setStore({ data: deleteItem });
+				}).then(() => getActions().getTodo());
+			},
+			deleteTodo: element => {
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/rosheika1", {
+					method: "PUT",
+					body: JSON.stringify(element),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(() => getActions().getTodo());
 			}
+			// .then(res => res.json())
+			// .then(response => setStore({ data: response }));
+			// let deleteItem = getStore().data;
+			// deleteItem = deleteItem.filter(remove => remove !== element);
+			// setStore({ data: deleteItem });
 		}
 	};
 };
