@@ -8,6 +8,7 @@ import "../../styles/demo.scss";
 export const Demo = () => {
 	const [todo, setTodo] = useState("");
 	const { store, actions } = useContext(Context);
+	const [update, setUpdate] = useState("");
 	const data = store.data;
 
 	return (
@@ -41,11 +42,27 @@ export const Demo = () => {
 							<ul className="">
 								<li className="">
 									{element.label}
+									{!update.label && update.index == index ? (
+										<input paceholder={element.label} onChange={e => setUpdate(e.target.value)} />
+									) : (
+										element.label
+									)}
+									<i
+										className="far fa-check-square"
+										onClick={() => {
+											setUpdate({ label: true, index: index });
+											actions.updateTodo(input);
+										}}
+									/>
+
+									<i
+										className="fas fa-pencil-alt"
+										onClick={() => setUpdate({ label: false, index: index })}
+									/>
 
 									{/* <button className="btn btn-outline-secondary" onClick={()=>}>
 										<i className="fas fa-edit" />
 									</button> */}
-
 									<button
 										onClick={() => actions.deleteTodo(data.filter(remove => remove !== element))}
 										className="delete btn btn-warning">
