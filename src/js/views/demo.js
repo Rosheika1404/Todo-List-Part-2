@@ -47,13 +47,13 @@ export const Demo = () => {
 									) : (
 										element.label
 									)}
-									<i
+									{/* <i
 										className="far fa-check-square"
 										onClick={() => {
-											setUpdate({ label: true, index: index });
-											actions.updateTodo(input);
+											// setUpdate({ label: true, index: index });
+											actions.updateTodo(update, index);
 										}}
-									/>
+									/> */}
 
 									<i
 										className="fas fa-pencil-alt"
