@@ -11,7 +11,7 @@ const Todo = ({ element, index }) => {
 	return (
 		<div>
 			{edit === true ? (
-				<input className="border" paceholder={element.label} onChange={e => setUpdate(e.target.value)} />
+				<input className="border" paceholder={element.label} onChange={ez => setUpdate(ez.target.value)} />
 			) : (
 				element.label
 			)}
