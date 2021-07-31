@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			updateTodo: (label, index) => {
 				let update = getStore().data;
 				update[index] = { label: label, done: false };
-				update = [...update, update[index]];
+				// update = [update[index], ...update];
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/rosheika1", {
 					method: "PUT",
 					body: JSON.stringify(update),
